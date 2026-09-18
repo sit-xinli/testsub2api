@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI ツールキット</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>AI ツールキット</h1>
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" data-panel="image" role="tab">🎨 画像生成</button>
+    <button class="tab" data-panel="code" role="tab">💻 コーディング</button>
+    <button class="tab" data-panel="chat" role="tab">💬 チャット</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 画像生成 -->
+  <section class="panel is-active" id="panel-image">
+    <p class="lead">作りたい絵の内容を日本語で書いて、「生成する」を押してください。</p>
+
+    <div class="card">
+      <label class="field">
+        <span>プロンプト</span>
+        <textarea id="image-prompt" rows="3"
+          placeholder="例: ノートパソコンでプログラミングをするレッサーパンダ、フラットイラスト"></textarea>
+      </label>
+
+      <div class="row">
+        <label class="field">
+          <span>サイズ</span>
+          <select id="image-size">
+            <option value="1024x1024">正方形 (1024×1024)</option>
+            <option value="1536x1024">横長 (1536×1024)</option>
+            <option value="1024x1536">縦長 (1024×1536)</option>
+            <option value="512x512">小 (512×512)</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>枚数</span>
+          <select id="image-n">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+          </select>
+        </label>
+        <button class="primary" id="image-go">生成する</button>
+      </div>
+    </div>
+
+    <div class="status" id="image-status" hidden></div>
+    <div class="gallery" id="image-gallery"></div>
+  </section>
+
+  <!-- コーディング -->
+  <section class="panel" id="panel-code">
+    <p class="lead">コードの相談、バグの原因調査、書き直しなどを依頼できます。</p>
+    <div class="thread" id="code-thread"></div>
+    <form class="composer" id="code-form">
+      <textarea id="code-input" rows="3"
+        placeholder="例: Python でCSVを読み込んで列ごとの平均を出す関数を書いて（Enterで送信 / Shift+Enterで改行）"></textarea>
+      <div class="composer-actions">
+        <button type="button" class="ghost" data-clear="code">履歴を消す</button>
+        <button type="submit" class="primary" id="code-go">送信</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- チャット -->
+  <section class="panel" id="panel-chat">
+    <p class="lead">なんでも気軽に話しかけてください。</p>
+    <div class="thread" id="chat-thread"></div>
+    <form class="composer" id="chat-form">
+      <textarea id="chat-input" rows="3"
+        placeholder="メッセージを入力（Enterで送信 / Shift+Enterで改行）"></textarea>
+      <div class="composer-actions">
+        <button type="button" class="ghost" data-clear="chat">履歴を消す</button>
+        <button type="submit" class="primary" id="chat-go">送信</button>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer class="footer" id="footer">モデル情報を読み込み中…</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

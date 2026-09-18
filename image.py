@@ -26,8 +26,8 @@ load_dotenv()
 
 API_KEY = os.environ.get("OPENAI_API_KEY", "")
 BASE_URL = os.environ.get("OPENAI_BASE_URL", "http://localhost:8089/v1")
-MODEL = os.environ.get("IMAGE_MODEL") or os.environ.get("OPENAI_MODEL", "gpt-image-2")
-SIZE = os.environ.get("IMAGE_SIZE", "1024x1024")
+MODEL = os.environ.get("IMAGE_OPENAI_MODEL") or os.environ.get("OPENAI_IMAGE_MODEL", "gpt-image-2")
+SIZE = os.environ.get("IMAGE_SIZE", "512x512")
 N = int(os.environ.get("IMAGE_N", "1"))
 OUTPUT_DIR = Path(os.environ.get("IMAGE_OUTPUT_DIR", "images"))
 
